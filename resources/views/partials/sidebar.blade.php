@@ -54,7 +54,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               
               <p>
@@ -70,11 +70,17 @@
                   <p>Respondents</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('project.index') }}" class="nav-link">
+                  <i class="fas fa-book nav-icon"></i>
+                  <p>Projects</p>
+                </a>
+              </li>
             </ul>
           </li>
 
           <!-- Options Management Menu -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               
               <p>

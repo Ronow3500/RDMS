@@ -39,6 +39,8 @@ class CreateRespondentsTable extends Migration
             $table->string('religion')->nullable();
             $table->string('ethnic_group')->nullable();
             $table->string('employment_status')->nullable();
+            $table->string('last_downloaded_date');
+            $table->string('project_name');
             $table->timestamps();
         });
     }

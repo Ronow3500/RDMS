@@ -23,6 +23,7 @@ use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\EthnicGroupController;
 use App\Http\Controllers\EmploymentStatusController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +114,7 @@ Route::get('/user', [UserController::class, 'index']);
  Route::middleware('auth')->resource('constituency', ConstituencyController::class);
  // Age Group Routes
  Route::middleware('auth')->resource('age_group', AgeGroupController::class);
- // Constituency Routes
+ // Setting Routes
  Route::middleware('auth')->resource('setting', SettingController::class);
  // Education Level Routes
  Route::middleware('auth')->resource('education_level', EducationLevelController::class);
@@ -125,3 +126,5 @@ Route::get('/user', [UserController::class, 'index']);
  Route::middleware('auth')->resource('ethnic_group', EthnicGroupController::class);
  // Employment Status
 Route::middleware('auth')->resource('employment_status', EmploymentStatusController::class);
+// Project Routes
+ Route::middleware('auth')->resource('project', ProjectController::class);

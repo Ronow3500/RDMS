@@ -65,7 +65,7 @@
         <div class="mb-3">
           <div class="form-group">
             <label for="region">Region</label>
-            <select name="region" class="form-control select2 select2-hidden-accessible @error('region') is-invalid @enderror" style="width: 100%;">
+            <select name="region" class="form-select select2 select2-hidden-accessible @error('region') is-invalid @enderror" style="width: 100%;">
               <?php foreach ($region  as $item ) : ?>
                 <option value="@isset($create) {{ old('region') }} @endisset @isset($item) {{ $item->name }} @endisset">
                     <?= $item->name ?>        
