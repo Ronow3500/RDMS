@@ -51,4 +51,24 @@ class Respondent extends Model
 
         return $records;
     }
+
+    /**
+     * Check if respondent has a given project
+     * @param string $project
+     * return bool
+     */
+    public function hasAnyProject(string $project)
+    {
+        return null !== $this->roles()->where('name', $project)->first();
+    }
+
+    /**
+     * Check if respondent has any of the given roles
+     * @param array $project
+     * return bool
+     */
+    public function hasAnyProjects(array $project)
+    {
+        return null !== $this->roles()->whereIn('name', $project)->first();
+    }    
 }

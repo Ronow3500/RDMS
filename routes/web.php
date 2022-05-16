@@ -23,6 +23,7 @@ use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\EthnicGroupController;
 use App\Http\Controllers\EmploymentStatusController;
+use App\Http\Controllers\FtpController;
 use App\Http\Controllers\ProjectController;
 
 /*
@@ -87,6 +88,11 @@ Route::get('/export-csv', [RespondentController::class, 'exportIntoCsv'])->name(
 Route::get('/filtered-by-county-export-csv', [RespondentController::class, 'exportIntoExcelFilteredByCounty'])->name('filtered-by-county-export-csv');
 
 Route::get('/user', [UserController::class, 'index']);
+
+/* FTP Routes */
+ Route::middleware('auth')->get('ftp/index', [FtpController::class, 'index']);
+ Route::middleware('auth')->get('ftp/create', [FtpController::class, 'create']);
+ Route::middleware('auth')->post('ftp/store', [FtpController::class, 'store']);
 
 /**
  * CRUD Resource Routes

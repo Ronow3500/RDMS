@@ -29,7 +29,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
               
               <p>
@@ -54,7 +54,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               
               <p>
@@ -74,6 +74,26 @@
                 <a href="{{ route('project.index') }}" class="nav-link">
                   <i class="fas fa-book nav-icon"></i>
                   <p>Projects</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- FTP -->
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+              
+              <p>
+                 FTP
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+              <li class="nav-item">
+                <a href="{{ url('ftp/index') }}" class="nav-link">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Upload File(s)</p>
                 </a>
               </li>
             </ul>
