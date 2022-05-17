@@ -35,6 +35,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRole('manager');
         });
 
+        Gate::define('is-files-manager', function ($user)
+        {
+            return $user->hasAnyRole('File Manager');
+        });
+
         Gate::define('is-staff', function ($user)
         {
             return $user->hasAnyRole('Staff');

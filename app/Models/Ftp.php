@@ -17,6 +17,7 @@ class Ftp extends Model
      * @var string[]
      */
     protected $fillable = [
+        'file_title',
         'file_name',
         'file_description',
         'file_type',

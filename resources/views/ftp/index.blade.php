@@ -21,7 +21,8 @@
               <table class="table">
                 <thead class="thead-light">
                   <tr>
-                    <th>File Name</th>
+                    <th>File Title</th>
+                    <th>Size</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -30,9 +31,10 @@
                   <tr>
                     <td>
                       <a href="{{ url('ftp/show', $file->id) }}">
-                        {{ $file->file_name }}
+                        {{ $file->file_title }}
                       </a>
                     </td>
+                    <td>{{ $file->file_size }} Kb</td>
                     <td>
                       <div class="row">
                         <div class="col">

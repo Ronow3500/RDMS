@@ -15,6 +15,7 @@ class CreateFtpsTable extends Migration
     {
         Schema::create('ftps', function (Blueprint $table) {
             $table->id();
+            $table->string('file_title')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_description')->nullable();
             $table->string('file_type')->nullable();

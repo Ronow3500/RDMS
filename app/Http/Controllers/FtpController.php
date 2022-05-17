@@ -39,16 +39,17 @@ class FtpController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        //dd($request->file('ftp'));
         if ($request->hasFile('ftp'))
         {
             $request->validate([
-                'file_name' => 'required',
+                'file_title' => 'required',
                 'file_description' => 'required',
                 'ftp' => 'required|mimes:csv,doc,docx,xls,xlsx,spss,pdf,zip',
             ]);
 
-            $name = Str::of($request->input('file_name'))->slug('-');
+            $name = Str::of($request->input('file_title'))->slug('-');
+            //dd($name);
             $ext = $request->file('ftp')->extension();
 
             $filename = $name . '.' . $ext;
@@ -59,8 +60,9 @@ class FtpController extends Controller
             $ftp = new Ftp();
 
             if ($ftp->create([
-                'file_name' => $request->input('file_name'),
+                'file_title' => $request->input('file_title'),
                 'file_description' => $request->input('file_description'),
+                'file_name' => $filename,
                 'file_type' => $request->file('ftp')->getClientMimeType(),
                 'file_size' => $request->file('ftp')->getSize()
             ]))
@@ -70,17 +72,12 @@ class FtpController extends Controller
             else
             {
                 return redirect()->back()->with('danger', 'Failed to upload file');
-            }
-            
-
-            
+            }            
         }
         else
         {
             return redirect()->back()->with('warning', 'That was an empty file selection');
-        }
-        
-        
+        }               
     }
 
     public function show($id)
@@ -127,39 +124,41 @@ class FtpController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->file('ftp'));
         if ($request->hasFile('ftp'))
         {
             $request->validate([
-            'file_name' => 'required',
-            'file_description' => 'required',
-            'ftp' => 'required',
-        ]);
+                'file_title' => 'required',
+                'file_description' => 'required',
+                'ftp' => 'required|mimes:csv,doc,docx,xls,xlsx,spss,pdf,zip',
+            ]);
 
-        $name = Str::of($request->input('file_name'))->slug('-');
-        //dd($request);
-        $ext = $request->file('ftp')->extension();
-        
+            $name = Str::of($request->input('file_title'))->slug('-');
+            //dd($name);
+            $ext = $request->file('ftp')->extension();
 
-        $filename = $name . '.' . $ext . '-' . time();
-            dd($filename);
+            $filename = $name . '.' . $ext;
+            //dd($filename);
 
-        $path = $request->file('ftp')->storeAs('public/FTP', $filename);
+            $path = $request->file('ftp')->storeAs('public/FTP', $filename);
 
-        $ftp = Ftp::find($id);
-        dd($ftp);
-        if ($ftp->update([
-            'file_name' => $request->input('file_name'),
-            'file_description' => $request->input('file_description'),
-            'file_type' => $request->file('ftp')->getClientMimeType(),
-            'file_size' => $request->file('ftp')->getSize()
-        ]))
-        {
-            return redirect()->back()->with('success', 'File successfully Updated');
-        }
-        else
-        {
-            return redirect()->back()->with('danger', 'Failed to update file details');
-        }
+            $ftp = Ftp::find($id);
+            //dd($ftp);
+
+            if ($ftp->update([
+                'file_title' => $request->input('file_title'),
+                'file_description' => $request->input('file_description'),
+                'file_name' => $filename,
+                'file_type' => $request->file('ftp')->getClientMimeType(),
+                'file_size' => $request->file('ftp')->getSize()
+            ]))
+            {
+                return redirect()->back()->with('success', 'File successfully Uploaded');
+            }
+            else
+            {
+                return redirect()->back()->with('danger', 'Failed to upload file');
+            }            
         }
         else
         {
@@ -187,6 +186,6 @@ class FtpController extends Controller
 
     public function download()
     {
-        //Storage::download('file.jpg', $filename, $headers);
+        Storage::download('file.jpg', $filename, $headers);
     }
 }
