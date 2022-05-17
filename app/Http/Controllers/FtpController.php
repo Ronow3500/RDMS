@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ftp;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -14,9 +15,23 @@ class FtpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*public function index()
+    {
+        $files = Storage::files("public");
+        //dd($files);
+        $ftpFiles = array();
+
+        foreach ($files as $key => $value)
+        {
+            $value = str_replace("public/","",$value);
+            array_push($ftpFiles, $value);
+        }
+
+        return view('ftp.index', ['files' => $ftpFiles]);
+    }*/
     public function index()
     {
-        $data['ftp'] = Ftp::paginate(10);
+        $data['files'] = Ftp::paginate(10);
 
         return view('ftp.index', $data);
     }
@@ -55,7 +70,7 @@ class FtpController extends Controller
             $filename = $name . '.' . $ext;
             //dd($filename);
 
-            $path = $request->file('ftp')->storeAs('public/FTP', $filename);
+            $path = $request->file('ftp')->storeAs('public', $filename);
 
             $ftp = new Ftp();
 
@@ -82,16 +97,17 @@ class FtpController extends Controller
 
     public function show($id)
     {
-        $data['ftp']  = Ftp::find($id);
+        $files = Storage::files("public");
+        dd($files);
+        $data = array();
 
-        if ($data['ftp'])
+        foreach ($files as $key => $value)
         {
-            return view('ftp.show', $data);
+            $value = str_replace("public/","",$val);
+            array_push($data['ftpFiles'], $value);
         }
-        else
-        {
-            return redirect()->back()->with('error', 'Ooops! File not found');
-        }
+
+        return view('ftp.show', $data);
     }
 
     /**
@@ -184,8 +200,12 @@ class FtpController extends Controller
         }
     }
 
-    public function download()
+    public function download($file_name)
     {
+        $filename = Storage::disk('public')->get($file_name);
+
+        $headers = header('Content-Type', 'text/csv');
+
         Storage::download('file.jpg', $filename, $headers);
     }
 }

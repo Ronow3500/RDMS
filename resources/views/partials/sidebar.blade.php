@@ -153,7 +153,7 @@
                 <i class="fas fa-circle nav-icon"></i>
                 <p>Age Group</p>
               </a>
-              </li>
+            </li>
             <li class="nav-item">
               <a href="{{ route('setting.index') }}" class="nav-link">
                 <i class="fas fa-circle nav-icon"></i>
@@ -191,10 +191,10 @@
               </a>
             </li>
 
-            </ul>
+          </ul>
         </li>
-        </ul>
-        @endcan
+      </ul>
+      @endcan
 
       @can('is-files-manager')
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

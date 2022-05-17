@@ -97,6 +97,7 @@ Route::get('/user', [UserController::class, 'index']);
  Route::middleware('auth')->get('ftp/edit/{id}', [FtpController::class, 'edit']);
  Route::middleware('auth')->patch('ftp/update/{id}', [FtpController::class, 'update']);
  Route::middleware('auth')->delete('ftp/destroy/{id}', [FtpController::class, 'destroy']);
+ Route::middleware('auth')->get('ftp/download/{file_name}', [FtpController::class, 'download']);
 
 /**
  * CRUD Resource Routes
