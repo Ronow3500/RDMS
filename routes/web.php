@@ -93,6 +93,10 @@ Route::get('/user', [UserController::class, 'index']);
  Route::middleware('auth')->get('ftp/index', [FtpController::class, 'index']);
  Route::middleware('auth')->get('ftp/create', [FtpController::class, 'create']);
  Route::middleware('auth')->post('ftp/store', [FtpController::class, 'store']);
+ Route::middleware('auth')->get('ftp/show/{id}', [FtpController::class, 'show']);
+ Route::middleware('auth')->get('ftp/edit/{id}', [FtpController::class, 'edit']);
+ Route::middleware('auth')->patch('ftp/update/{id}', [FtpController::class, 'update']);
+ Route::middleware('auth')->destroy('ftp/destroy/{id}', [FtpController::class, 'destroy']);
 
 /**
  * CRUD Resource Routes

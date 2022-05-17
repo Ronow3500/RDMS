@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ftp extends Model
 {
+    protected $table = 'ftps';
+
     use HasFactory;
 
     /**
@@ -16,6 +18,8 @@ class Ftp extends Model
      */
     protected $fillable = [
         'file_name',
-        'file'
+        'file_description',
+        'file_type',
+        'file_size'
     ];
 }

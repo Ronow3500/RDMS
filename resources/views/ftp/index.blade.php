@@ -30,21 +30,21 @@
                   <tr>
                     <td>
                       <a href="{{ url('ftp/show', $file->id) }}">
-                        {{ $file->name }}
+                        {{ $file->file_name }}
                       </a>
                     </td>
                     <td>
                       <div class="row">
                         <div class="col">
-                        <a class="btn btn-sm btn-primary" href="{{ route('ftp.edit', $file->id) }}" role="button" title="Edit {{ $file->name }} ftp">
+                        <a class="btn btn-sm btn-primary" href="{{ url('ftp/edit', $file->id) }}" role="button" title="Edit {{ $file->file_name }} ftp">
                         <span class="fas fa-pen"></span>
                       </a>
                       </div>
                       <div class="col">
-                        <form method="post" action="{{ route('ftp.destroy', $file->id) }}">
+                        <form method="post" action="{{ url('ftp/destroy', $file->id) }}">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-sm btn-danger" title="Remove {{ $file->name }} from the system">
+                        <button type="submit" class="btn btn-sm btn-danger" title="Remove {{ $file->file_name }} from the system">
                           <span class="far fa-trash-alt"></span>
                         </button>
                         </form>

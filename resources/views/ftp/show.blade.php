@@ -7,21 +7,24 @@
         <div class="card">
           <div class="card-header bg-primary">
             <h2 class="card-title text-light">
-              County Details
+              File Details
             </h2>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <th>County Name</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{ $county->name }}</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col">
+                <h3>{{ $ftp->file_name }}</h3>
+                <hr>
+                <p>
+                  {{ $ftp->file_description }}
+                </p>
+              </div>
+              <div class="col">
+                <button class="btn btn-info">
+                  Download {{ $ftp->file_name }}
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
