@@ -21,7 +21,7 @@
               <table class="table">
                 <thead class="thead-light">
                   <tr>
-                    <th>Options</th>
+                    <th>File Name</th>
                     <th>Action</th>
                   </tr>
                 </thead>

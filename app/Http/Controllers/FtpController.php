@@ -177,11 +177,11 @@ class FtpController extends Controller
     {
         if (Ftp::destroy($id))
         {
-            return redirect()->back()->with('success', 'File successfully removed from the server');
+            return redirect()->back()->with('info', 'File successfully removed from the server');
         }
         else
         {
-            return redirect()->back()->with('error', 'File was not successfully removed from the server');
+            return redirect()->back()->with('warning', 'File was not successfully removed from the server');
         }
     }
 
