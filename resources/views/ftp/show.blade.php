@@ -13,15 +13,15 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <h3>{{ $ftp->file_title }}</h3>
+                <h3>{{ $file->file_title }}</h3>
                 <hr>
                 <p>
-                  {{ $ftp->file_description }}
+                  {{ $file->file_description }}
                 </p>
               </div>
               <div class="col">
                 <button class="btn btn-info" title="Download">
-                   {{ $ftp->file_name }}
+                   {{ $file->file_name }}
                   <i class="fas fa-download"></i>
                 </button>
               </div>

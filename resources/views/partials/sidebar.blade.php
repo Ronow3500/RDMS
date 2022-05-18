@@ -211,7 +211,7 @@
               
               <li class="nav-item">
                 <a href="{{ url('ftp/index') }}" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
+                  <i class="fas fa-file nav-icon"></i>
                   <p>Upload File(s)</p>
                 </a>
               </li>

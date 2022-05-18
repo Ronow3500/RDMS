@@ -23,8 +23,8 @@
                 <thead class="thead-light">
                   <tr>
                     <th>Files</th>
-                    <th>File Type</th>
-                    <th>File Size</th>
+                    <th>File Type & Size</th>
+                    <th>Download</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -32,16 +32,16 @@
                   @foreach($files as $file)
                   <tr>
                     <td>
-                      <a href="{{ url('ftp/download', $file[0]) }}">
+                      <a href="{{ url('ftp/show', $file->id) }}">
                         <i class="fas fa-file"></i>
-                        {!! $file->file_name !!}
+                        {!! $file->file_title !!}
                       </a>
                     </td>
                     <td>
-                      {{ $file->file_type . ' ' . $file->file_size . 'kb' }}
+                      {{ $file->file_type . ' - ' . $file->file_size . 'kb' }}
                     </td>
                     <td>
-                      <a href="{{ url('ftp/download', $file->file_name) }}">
+                      <a href="{{ url('ftp/download', $file->file_name, $file->file_type) }}" target="_self" download>
                         <i class="fas fa-download"></i>
                       </a>
                     </td>

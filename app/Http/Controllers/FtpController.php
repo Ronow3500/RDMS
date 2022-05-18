@@ -15,23 +15,10 @@ class FtpController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /*public function index()
-    {
-        $files = Storage::files("public");
-        //dd($files);
-        $ftpFiles = array();
-
-        foreach ($files as $key => $value)
-        {
-            $value = str_replace("public/","",$value);
-            array_push($ftpFiles, $value);
-        }
-
-        return view('ftp.index', ['files' => $ftpFiles]);
-    }*/
     public function index()
     {
         $data['files'] = Ftp::paginate(10);
+        //dd($data);
 
         return view('ftp.index', $data);
     }
@@ -97,17 +84,17 @@ class FtpController extends Controller
 
     public function show($id)
     {
-        $files = Storage::files("public");
-        dd($files);
-        $data = array();
+        $data['file'] = Ftp::find($id);
 
-        foreach ($files as $key => $value)
+        if ($data['file'])
         {
-            $value = str_replace("public/","",$val);
-            array_push($data['ftpFiles'], $value);
+            //dd($data);
+            return view('ftp.show', $data);
         }
-
-        return view('ftp.show', $data);
+        else
+        {
+            return redirect()->back()->with('error', 'Ooops! Ftp no longer exists in the database');
+        }
     }
 
     /**
@@ -200,12 +187,11 @@ class FtpController extends Controller
         }
     }
 
-    public function download($file_name)
+    public function download($file_name, $file_type)
     {
-        $filename = Storage::disk('public')->get($file_name);
+        $file = Storage::disk('public')->get($file_name);
 
-        $headers = header('Content-Type', 'text/csv');
+        return (new Response($file, 200))->header('Content-Type', $file_type);
 
-        Storage::download('file.jpg', $filename, $headers);
     }
 }
