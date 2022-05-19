@@ -20,10 +20,16 @@
                 </p>
               </div>
               <div class="col">
-                <button class="btn btn-info" title="Download">
+                <?php
+
+use Illuminate\Support\Facades\Storage;
+
+$url = Storage::url(public_path('storage/'.$file->file_name));
+                ?>
+                <a href="<?= $url; ?>" class="btn btn-info" title="Download">
                    {{ $file->file_name }}
                   <i class="fas fa-download"></i>
-                </button>
+                </a>
               </div>
             </div>
           </div>

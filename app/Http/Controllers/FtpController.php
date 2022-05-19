@@ -187,11 +187,14 @@ class FtpController extends Controller
         }
     }
 
-    public function download($file_name, $file_type)
+    public function download($id)
     {
-        $file = Storage::disk('public')->get($file_name);
+        $file = Ftp::find($id);
 
-        return (new Response($file, 200))->header('Content-Type', $file_type);
+        $filename = $file->file_name;
+        $path = public_path('storage/'.$filename);
+        
+        return response()->download($path);
 
     }
 }
