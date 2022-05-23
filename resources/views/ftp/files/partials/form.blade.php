@@ -3,7 +3,7 @@
       <div class="col">
         <div class="mb-3">
            <label for="ftp">Select File</label>
-           <input id="ftp" type="file" name="ftp" class="form-control-file @error('ftp') is-invalid @enderror" value="@isset($create) {{ old('ftp') }} @endisset @isset($ftp) {{ $ftp->file_title }} @endisset" aria-describedby="ftp" placeholder="Please Select File">
+           <input id="ftp" type="file" name="ftp" class="form-control-file @error('ftp') is-invalid @enderror" value="@isset($create) {{ old('ftp') }} @endisset @isset($ftp) {{ $ftp->file_name }} @endisset" aria-describedby="ftp" placeholder="Please Select File">
            @error('ftp')
            <span class="invalid-feedback"role="alert">
             {{ $message }}

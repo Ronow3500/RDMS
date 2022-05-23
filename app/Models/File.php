@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ftp extends Model
+class File extends Model
 {
-    protected $table = 'ftps';
+    protected $table = 'files';
 
     use HasFactory;
 

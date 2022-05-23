@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFtpsTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFtpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ftps', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('file_title')->nullable();
             $table->string('file_name')->nullable();
@@ -31,6 +31,6 @@ class CreateFtpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ftps');
+        Schema::dropIfExists('files');
     }
 }

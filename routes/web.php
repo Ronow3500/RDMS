@@ -3,28 +3,28 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\UserController;
-//use RespondentController;
-use App\Http\Controllers\RespondentController;
-use App\Http\Controllers\User\ProfileController;
-use App\Http\Controllers\GenderController;
-use App\Http\Controllers\RegionController;
+use App\Http\Controllers\AgeGroupController;
+use App\Http\Controllers\ConstituencyController;
 use App\Http\Controllers\CountyController;
-use App\Http\Controllers\SubCountyController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\SubLocationController;
-use App\Http\Controllers\WardController;
-use App\Http\Controllers\ConstituencyController;
-use App\Http\Controllers\AgeGroupController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\EducationLevelController;
-use App\Http\Controllers\MaritalStatusController;
-use App\Http\Controllers\ReligionController;
-use App\Http\Controllers\EthnicGroupController;
 use App\Http\Controllers\EmploymentStatusController;
-use App\Http\Controllers\FtpController;
+use App\Http\Controllers\EthnicGroupController;
+use App\Http\Controllers\Ftp\FolderController;
+use App\Http\Controllers\Ftp\FileController;
+use App\Http\Controllers\GenderController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MaritalStatusController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\RespondentController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SubCountyController;
+use App\Http\Controllers\SubLocationController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\WardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,14 +90,21 @@ Route::get('/filtered-by-county-export-csv', [RespondentController::class, 'expo
 Route::get('/user', [UserController::class, 'index']);
 
 /* FTP Routes */
- Route::middleware('auth')->get('ftp/index', [FtpController::class, 'index']);
- Route::middleware('auth')->get('ftp/create', [FtpController::class, 'create']);
- Route::middleware('auth')->post('ftp/store', [FtpController::class, 'store']);
- Route::middleware('auth')->get('ftp/show/{id}', [FtpController::class, 'show']);
- Route::middleware('auth')->get('ftp/edit/{id}', [FtpController::class, 'edit']);
- Route::middleware('auth')->patch('ftp/update/{id}', [FtpController::class, 'update']);
- Route::middleware('auth')->delete('ftp/destroy/{id}', [FtpController::class, 'destroy']);
- Route::middleware('auth')->get('ftp/download/{id}', [FtpController::class, 'download']);
+// Files
+ Route::middleware('auth')->get('ftp/files/index', [FileController::class, 'index']);
+ Route::middleware('auth')->get('ftp/files/create', [FileController::class, 'create']);
+ Route::middleware('auth')->post('ftp/files/store', [FileController::class, 'store']);
+ Route::middleware('auth')->get('ftp/files/show/{id}', [FileController::class, 'show']);
+ Route::middleware('auth')->get('ftp/files/edit/{id}', [FileController::class, 'edit']);
+ Route::middleware('auth')->patch('ftp/files/update/{id}', [FileController::class, 'update']);
+ Route::middleware('auth')->delete('ftp/files/destroy/{id}', [FileController::class, 'destroy']);
+ Route::middleware('auth')->get('ftp/files/download/{id}', [FileController::class, 'download']);
+
+ //Folders
+  Route::prefix('ftp')->middleware(['auth'])->name('ftp.')->group(function ()
+ {
+     Route::resource('folders', FolderController::class);
+ });
 
 /**
  * CRUD Resource Routes

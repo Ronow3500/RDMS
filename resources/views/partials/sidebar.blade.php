@@ -208,11 +208,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
               <li class="nav-item">
-                <a href="{{ url('ftp/index') }}" class="nav-link">
+                <a href="{{ url('ftp/folders') }}" class="nav-link">
+                  <i class="fas fa-folder nav-icon"></i>
+                  <p>Folders</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('ftp/files/index') }}" class="nav-link">
                   <i class="fas fa-file nav-icon"></i>
-                  <p>Upload File(s)</p>
+                  <p>Files</p>
                 </a>
               </li>
             </ul>

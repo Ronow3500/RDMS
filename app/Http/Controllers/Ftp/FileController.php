@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Ftp;
 
-use App\Models\Ftp;
+use App\Models\File;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class FtpController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +18,10 @@ class FtpController extends Controller
      */
     public function index()
     {
-        $data['files'] = Ftp::paginate(10);
+        $data['files'] = File::paginate(10);
         //dd($data);
 
-        return view('ftp.index', $data);
+        return view('ftp.files.index', $data);
     }
 
     /**
@@ -30,7 +31,7 @@ class FtpController extends Controller
      */
     public function create()
     {
-        return view('ftp.create');
+        return view('ftp.files.create');
     }
 
     /**
@@ -59,7 +60,7 @@ class FtpController extends Controller
 
             $path = $request->file('ftp')->storeAs('public', $filename);
 
-            $ftp = new Ftp();
+            $ftp = new File();
 
             if ($ftp->create([
                 'file_title' => $request->input('file_title'),
@@ -84,16 +85,16 @@ class FtpController extends Controller
 
     public function show($id)
     {
-        $data['file'] = Ftp::find($id);
+        $data['file'] = File::find($id);
 
         if ($data['file'])
         {
             //dd($data);
-            return view('ftp.show', $data);
+            return view('ftp.files.show', $data);
         }
         else
         {
-            return redirect()->back()->with('error', 'Ooops! Ftp no longer exists in the database');
+            return redirect()->back()->with('error', 'Ooops! File no longer exists in the database');
         }
     }
 
@@ -105,16 +106,16 @@ class FtpController extends Controller
      */
     public function edit($id)
     {
-        $data['ftp']  = Ftp::find($id);
+        $data['ftp']  = File::find($id);
 
         if ($data['ftp'])
         {
             //dd($data);
-            return view('ftp.edit', $data);
+            return view('ftp.files.edit', $data);
         }
         else
         {
-            return redirect()->back()->with('error', 'Ooops! Ftp no longer exists in the database');
+            return redirect()->back()->with('error', 'Ooops! File no longer exists in the database');
         }
     }
 
@@ -127,7 +128,7 @@ class FtpController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->file('ftp'));
+        //dd($request->hasFile('ftp'));
         if ($request->hasFile('ftp'))
         {
             $request->validate([
@@ -143,12 +144,11 @@ class FtpController extends Controller
             $filename = $name . '.' . $ext;
             //dd($filename);
 
-            $path = $request->file('ftp')->storeAs('public/FTP', $filename);
+            $path = $request->file('ftp')->storeAs('public', $filename);
 
-            $ftp = Ftp::find($id);
-            //dd($ftp);
+            $ftp = new File();
 
-            if ($ftp->update([
+            if ($ftp->create([
                 'file_title' => $request->input('file_title'),
                 'file_description' => $request->input('file_description'),
                 'file_name' => $filename,
@@ -177,7 +177,7 @@ class FtpController extends Controller
      */
     public function destroy($id)
     {
-        if (Ftp::destroy($id))
+        if (File::destroy($id))
         {
             return redirect()->back()->with('info', 'File successfully removed from the server');
         }
@@ -189,7 +189,7 @@ class FtpController extends Controller
 
     public function download($id)
     {
-        $file = Ftp::find($id);
+        $file = File::find($id);
 
         $filename = $file->file_name;
         $path = public_path('storage/'.$filename);
