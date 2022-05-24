@@ -12,7 +12,7 @@
                 <h1 class="card-title float-left"> Files </h1>
               </div>
               <div class="col-6">
-                <a href="{{ url('ftp/create') }}" class="btn btn-success float-right" role="button">Add A New File</a>
+                <a href="{{ url('ftp/files/create') }}" class="btn btn-success float-right" role="button">Add A New File</a>
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
                   @foreach($files as $file)
                   <tr>
                     <td>
-                      <a href="{{ url('ftp/show', $file->id) }}">
+                      <a href="{{ url('ftp/files/show', $file->id) }}">
                         <i class="fas fa-file"></i>
                         {!! $file->file_title !!}
                       </a>
@@ -41,19 +41,19 @@
                       {{ $file->file_type . ' - ' . $file->file_size . 'kb' }}
                     </td>
                     <td>
-                      <a href="<?= url('ftp/download', $file->id) ?>">
+                      <a href="<?= url('ftp/files/download', $file->id) ?>">
                         <i class="fas fa-download"></i>
                       </a>
                     </td>
                     <td>
                       <div class="row">
                         <div class="col">
-                        <a class="btn btn-sm btn-primary" href="{{ url('ftp/edit', $file->id) }}" role="button" title="Edit {{ $file->file_title }}">
+                        <a class="btn btn-sm btn-primary" href="{{ url('ftp/files/edit', $file->id) }}" role="button" title="Edit {{ $file->file_title }}">
                         <span class="fas fa-pen"></span>
                       </a>
                       </div>
                       <div class="col">
-                        <form method="post" action="{{ url('ftp/destroy', $file->id) }}">
+                        <form method="post" action="{{ url('ftp/files/destroy', $file->id) }}">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-sm btn-danger" title="Remove {{ $file->file_title }} from the system">

@@ -48,7 +48,7 @@ class FileController extends Controller
             $request->validate([
                 'file_title' => 'required',
                 'file_description' => 'required',
-                'ftp' => 'required|mimes:csv,doc,docx,xls,xlsx,spss,pdf,zip',
+                'ftp' => 'required',
             ]);
 
             $name = Str::of($request->input('file_title'))->slug('-');

@@ -8,8 +8,8 @@
          </div>
          <div class="card-body">
              <div class="form-group">
-                 <form method="post" action="{{ url('ftp/store') }}" enctype="multipart/form-data">
-                    @include('ftp.partials.form', ['create' => true])
+                 <form method="post" action="{{ url('ftp/files/store') }}" enctype="multipart/form-data">
+                    @include('ftp.files.partials.form', ['create' => true])
                  </form>
              </div>
          </div>
