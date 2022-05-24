@@ -48,7 +48,7 @@
                     <td>
                       <div class="row">
                         <div class="col">
-                        <a class="btn btn-sm btn-primary" href="{{ url('ftp/files/edit', $file->id) }}" role="button" title="Edit {{ $file->file_title }}">
+                        <a onclick="return false;" class="btn btn-sm btn-primary" href="{{ url('ftp/files/edit', $file->id) }}" role="button" title="Edit {{ $file->file_title }}">
                         <span class="fas fa-pen"></span>
                       </a>
                       </div>

@@ -8,9 +8,9 @@
          </div>
          <div class="card-body">
              <div class="form-group">
-                 <form method="post" action="{{ url('ftp/update', $ftp->id) }}">
+                 <form method="post" action="{{ url('ftp/files/update', $ftp->id) }}">
                     @method('patch')
-                    @include('ftp.partials.form')
+                    @include('ftp.files.partials.form')
                  </form>
              </div>
          </div>
