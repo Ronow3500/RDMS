@@ -179,6 +179,10 @@ class FileController extends Controller
     {
         if (File::destroy($id))
         {
+            File::update(
+                ''
+            );
+
             return redirect()->back()->with('info', 'File successfully removed from the server');
         }
         else

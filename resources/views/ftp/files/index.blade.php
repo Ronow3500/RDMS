@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
- 
+
  <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -31,6 +31,9 @@
                 <tbody> 
                   @foreach($files as $file)
                   <tr>
+<?php
+ $slug = Str::slug($file->file_title, '-');
+?>
                     <td>
                       <a href="{{ url('ftp/files/show', $file->id) }}">
                         <i class="fas fa-file"></i>
@@ -53,13 +56,40 @@
                       </a>
                       </div>
                       <div class="col">
-                        <form method="post" action="{{ url('ftp/files/destroy', $file->id) }}">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger" title="Remove {{ $file->file_title }} from the system">
+                        <!-- Prompt Delete Modal -->
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#{{ $slug }}" title="Remove {{ $file->file_title }} from the system">
                           <span class="far fa-trash-alt"></span>
                         </button>
-                        </form>
+
+                        <!-- Delete Modal -->
+                          <div class="modal" id="{{ $slug }}">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">You are about to delete {{ $file->file_title }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col">
+                                      <button type="button" class="btn btn-primary" data-dismiss="modal" title="Do Not Delete">Close</button>
+                                    </div>
+                                    <div class="col">
+                                      <form method="post" action="{{ url('ftp/files/destroy', $file->id) }}">
+                                      @method('delete')
+                                      @csrf
+                                      <button type="submit" class="btn btn-sm btn-danger float-right" title="Remove {{ $file->file_title }} from the system">
+                                        <span class="far fa-trash-alt"></span>
+                                      </button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- End Delete Modal -->
+                        
                       </div>
                       </div>
                     </td>
