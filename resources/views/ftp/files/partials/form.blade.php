@@ -14,7 +14,7 @@
       <div class="col">
         <div class="mb-3">
            <label for="file_title">File Title</label>
-           <input id="file_title" type="text" name="file_title" class="form-control @error('file_title') is-invalid @enderror" value="@isset($create) {{ old('file_title') }} @endisset @isset($ftp) {{ $ftp->file_title }} @endisset" aria-describedby="file_title" placeholder="Please Select File">
+           <input id="file_title" type="text" name="file_title" class="form-control @error('file_title') is-invalid @enderror" value="@isset($create) {{ old('file_title') }} @endisset @isset($file) {{ $file->file_title }} @endisset" aria-describedby="file_title" placeholder="Please Select File">
            @error('file_title')
            <span class="invalid-feedback"role="alert">
             {{ $message }}
@@ -31,7 +31,7 @@
            </span>
            @enderror
         <textarea class="form-control @error('file_description') is-invalid @enderror" id="file_description" name="file_description" rows="5">
-            @isset($create) {{ old('file_description') }} @endisset @isset($ftp) {{ $ftp->file_description }} @endisset
+            @isset($create) {{ old('file_description') }} @endisset @isset($file) {{ $file->file_description }} @endisset
         </textarea>
     </div>
 

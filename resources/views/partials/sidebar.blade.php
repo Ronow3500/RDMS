@@ -209,7 +209,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('ftp/folders') }}" class="nav-link">
+                <a href="{{ url('ftp/folders/index') }}" class="nav-link">
                   <i class="fas fa-folder nav-icon"></i>
                   <p>Folders</p>
                 </a>

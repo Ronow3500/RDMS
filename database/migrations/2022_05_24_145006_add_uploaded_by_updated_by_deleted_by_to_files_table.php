@@ -14,12 +14,12 @@ class AddUploadedByUpdatedByDeletedByToFilesTable extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->string('uploaded_by');
-            $table->string('updated_by');
-            $table->string('deleted_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+            $table->string('deleted_at')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *

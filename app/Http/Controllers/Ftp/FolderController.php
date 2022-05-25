@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Ftp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFolderRequest;
-use App\Http\Requests\UpdateFolderRequest;
+use App\Models\File;
 use App\Models\Folder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FolderController extends Controller
 {
@@ -35,7 +36,7 @@ class FolderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreFolderRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,72 +45,67 @@ class FolderController extends Controller
             'folder_name' => 'required|max:100',
         ]);
 
-        dd($validatedData);
+        //dd($validatedData);
 
         $folder = new Folder();
 
         if ($folder->create($validatedData))
         {
-            return redirect()->back()->with('success', 'Folder successfully added to the System');
+            return redirect()->back()->with('success', 'Folder successfully created');
         }
         else
         {
-            return redirect()->back()->with('error', 'Folder was not successfully added to the System');
+            return redirect()->back()->with('error', 'Folder was not successfully created');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Folder  $folder
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Folder $folder)
+    public function show($id)
     {
-        $data['folder']  = Folder::find($id);
+        $data['folder'] = Folder::find($id);
+        // List files that belongs to this folder
+        $data['files']  = File::paginate(10);
 
-        if ($data['folder'])
-        {
-            return view('ftp.folders.show', $data);
-        }
-        else
-        {
-            return redirect()->back()->with('error', 'Ooops! Folder not found');
-        }
+        return view('ftp.folders.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Folder  $folder
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Folder $folder)
+    public function edit($id)
     {
         $data['folder']  = Folder::find($id);
 
         if ($data['folder'])
         {
             //dd($data);
-            return view('ftp.folders.show', $data);
+            return view('ftp.folders.edit', $data);
         }
         else
         {
-            return redirect()->back()->with('error', 'Ooops! Folder no longer exists in the system');
+            return redirect()->back()->with('error', 'Ooops! Folder no longer exists in the database');
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateFolderRequest  $request
-     * @param  \App\Models\Folder  $folder
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFolderRequest $request, Folder $folder)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:100'
+            'folder_name' => 'required|max:200'
         ]);
 
         $folder = Folder::find($id);
@@ -129,18 +125,35 @@ class FolderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Folder  $folder
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Folder $folder)
+    public function destroy($id)
     {
-        if (Folder::destroy($id))
+        //dd(auth()->user()->name);
+        $folder = Folder::find($id);
+        $files = File::all();
+        //dd($files->count());
+
+        if ($files->count() > 0)
         {
-            return redirect()->back()->with('success', 'Folder successfully removed from the system');
+            // Do not delete folder it contains files.
+            return redirect()->back()->with('warning', 'Cannot delete folder if it contains files');
         }
         else
         {
-            return redirect()->back()->with('error', 'Folder was not successfully removed from the system');
+            if ($folder->destroy($id))
+            {
+                $folder->update([
+                    'deleted_by' => auth()->user()->name
+                ]);
+
+                return redirect()->back()->with('info', 'Folder successfully removed from the server');
+            }
+            else
+            {
+                return redirect()->back()->with('warning', 'Folder was not successfully removed from the server');
+            }
         }
     }
 }

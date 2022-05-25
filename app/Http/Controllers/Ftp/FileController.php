@@ -106,9 +106,9 @@ class FileController extends Controller
      */
     public function edit($id)
     {
-        $data['ftp']  = File::find($id);
+        $data['file']  = File::find($id);
 
-        if ($data['ftp'])
+        if ($data['file'])
         {
             //dd($data);
             return view('ftp.files.edit', $data);
@@ -148,12 +148,13 @@ class FileController extends Controller
 
             $ftp = new File();
 
-            if ($ftp->create([
+            if ($ftp->update([
                 'file_title' => $request->input('file_title'),
                 'file_description' => $request->input('file_description'),
                 'file_name' => $filename,
                 'file_type' => $request->file('ftp')->getClientMimeType(),
-                'file_size' => $request->file('ftp')->getSize()
+                'file_size' => $request->file('ftp')->getSize(),
+                'updated_by' => auth()->user()->name
             ]))
             {
                 return redirect()->back()->with('success', 'File successfully Uploaded');
@@ -177,11 +178,14 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        if (File::destroy($id))
+        //dd(auth()->user()->name);
+        $file = File::find($id);
+
+        if ($file->destroy($id))
         {
-            File::update(
-                ''
-            );
+            $file->update([
+                'deleted_by' => auth()->user()->name
+            ]);
 
             return redirect()->back()->with('info', 'File successfully removed from the server');
         }

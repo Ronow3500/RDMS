@@ -2,18 +2,18 @@
 
 @section('content')
  <div class="container-fluid">
-     <div class="card">
-         <div class="card-header">
-             <h3 class="text-center">Create Folder</h3>
-         </div>
-         <div class="card-body">
-             <div class="form-group">
-                 <form method="post" action="{{ url('ftp/folders/store') }}">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">Create Folder</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <form action="{{ url('ftp/folders/store ') }}" method="POST">
                     @include('ftp.folders.partials.form', ['create' => true])
-                 </form>
-             </div>
-         </div>
-     </div>
+                </form>
+            </div>
+        </div>
+    </div>
  </div>
 
 @endSection

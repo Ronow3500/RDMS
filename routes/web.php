@@ -38,7 +38,7 @@ use App\Http\Controllers\WardController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('home.dashboard');
 });
 
 Route::get('dashboard', function () {
@@ -101,10 +101,14 @@ Route::get('/user', [UserController::class, 'index']);
  Route::middleware('auth')->get('ftp/files/download/{id}', [FileController::class, 'download']);
 
  //Folders
-  Route::prefix('ftp')->middleware(['auth'])->name('ftp.')->group(function ()
- {
-     Route::resource('folders', FolderController::class);
- });
+  
+  Route::middleware('auth')->get('ftp/folders/index', [FolderController::class, 'index']);
+ Route::middleware('auth')->get('ftp/folders/create', [FolderController::class, 'create']);
+ Route::middleware('auth')->post('ftp/folders/store', [FolderController::class, 'store']);
+ Route::middleware('auth')->get('ftp/folders/show/{id}', [FolderController::class, 'show']);
+ Route::middleware('auth')->get('ftp/folders/edit/{id}', [FolderController::class, 'edit']);
+ Route::middleware('auth')->patch('ftp/folders/update/{id}', [FolderController::class, 'update']);
+ Route::middleware('auth')->delete('ftp/folders/destroy/{id}', [FolderController::class, 'destroy']);
 
 /**
  * CRUD Resource Routes

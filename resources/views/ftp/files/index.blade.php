@@ -66,19 +66,19 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h4 class="modal-title">You are about to delete {{ $file->file_title }}</h4>
+                                  <h4 class="modal-title text-danger">You are about to delete {{ $file->file_title }}. Are you sure ?</h4>
                                 </div>
                                 <div class="modal-body">
                                   <div class="row">
                                     <div class="col">
-                                      <button type="button" class="btn btn-primary" data-dismiss="modal" title="Do Not Delete">Close</button>
+                                      <button type="button" class="btn btn-primary" data-dismiss="modal" title="Do Not Delete">No</button>
                                     </div>
                                     <div class="col">
                                       <form method="post" action="{{ url('ftp/files/destroy', $file->id) }}">
                                       @method('delete')
                                       @csrf
-                                      <button type="submit" class="btn btn-sm btn-danger float-right" title="Remove {{ $file->file_title }} from the system">
-                                        <span class="far fa-trash-alt"></span>
+                                      <button type="submit" class="btn btn-danger float-right" title="Remove {{ $file->file_title }} from the system">
+                                        Yes
                                       </button>
                                       </form>
                                     </div>
