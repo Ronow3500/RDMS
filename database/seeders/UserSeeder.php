@@ -21,5 +21,10 @@ class UserSeeder extends Seeder
             'email' => 'kenneth.kipchumba@tifaresearch.com',
             'password' => Hash::make('Arsenal3500')
         ]);
+        User::create([
+            'name' => 'Kelvin Masika',
+            'email' => 'kelvin.masika@tifaresearch.com',
+            'password' => Hash::make('password')
+        ]);
     }
 }
