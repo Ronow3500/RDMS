@@ -17,6 +17,10 @@ class CreateFilesTable extends Migration
             $table->id();
             $table->string('file_title')->nullable();
             $table->string('file_name')->nullable();
+            $table->foreignId('folder_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('file_description')->nullable();
             $table->string('file_type')->nullable();
             $table->string('file_size')->nullable();

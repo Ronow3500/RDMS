@@ -20,6 +20,7 @@ class File extends Model
      */
     protected $fillable = [
         'file_title',
+        'folder_id',
         'file_name',
         'file_description',
         'file_type',
@@ -28,4 +29,12 @@ class File extends Model
         'updated_by',
         'deleted_by',
     ];
+
+    /**
+     * Get the folder that owns the file
+     */
+    public function folder()
+    {
+        return $this->belongsTo(Folder::class);
+    }
 }

@@ -24,4 +24,12 @@ class Folder extends Model
         'updated_by',
         'deleted_by',
     ];
+    
+    /**
+     * Get the files owned by the folder
+     */
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

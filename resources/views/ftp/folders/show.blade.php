@@ -97,6 +97,9 @@
             </div>
             @endisset
           </div>
+          <div class="card-footer">
+            {{ $files->links() }}
+          </div>
         </div>
         <hr>
       </div><!-- /.container-fluid -->

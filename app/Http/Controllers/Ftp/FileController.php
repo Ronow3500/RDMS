@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ftp;
 
 use App\Models\File;
+use App\Models\Folder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,7 +32,9 @@ class FileController extends Controller
      */
     public function create()
     {
-        return view('ftp.files.create');
+        $data['folder'] = Folder::all();
+
+        return view('ftp.files.create', $data);
     }
 
     /**
@@ -42,6 +45,7 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->input('folder'));
         //dd($request->file('ftp'));
         if ($request->hasFile('ftp'))
         {
@@ -64,6 +68,7 @@ class FileController extends Controller
 
             if ($ftp->create([
                 'file_title' => $request->input('file_title'),
+                'folder_id' => $request->input('folder'),
                 'file_description' => $request->input('file_description'),
                 'file_name' => $filename,
                 'file_type' => $request->file('ftp')->getClientMimeType(),
@@ -85,7 +90,8 @@ class FileController extends Controller
 
     public function show($id)
     {
-        $data['file'] = File::find($id);
+        $data['file']   = File::find($id);
+        $data['folder'] = File::find($id)->folder->folder_name;
 
         if ($data['file'])
         {
@@ -199,10 +205,14 @@ class FileController extends Controller
     {
         $file = File::find($id);
 
-        $filename = $file->file_name;
-        $path = public_path('storage/'.$filename);
-        
-        return response()->download($path);
+        if ($file)
+        {
+            $filename = $file->file_name;
+            $path = public_path('storage/'.$filename);
+            
+            return response()->download($path);
+        }
 
+        return redirect()->back()->with('warning', 'File was deleted');
     }
 }

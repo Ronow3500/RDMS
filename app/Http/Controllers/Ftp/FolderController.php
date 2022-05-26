@@ -69,7 +69,7 @@ class FolderController extends Controller
     {
         $data['folder'] = Folder::find($id);
         // List files that belongs to this folder
-        $data['files']  = File::paginate(10);
+        $data['files']  = File::where('folder_id', $id)->paginate(10);
 
         return view('ftp.folders.show', $data);
     }

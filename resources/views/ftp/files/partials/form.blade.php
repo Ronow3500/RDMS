@@ -13,6 +13,25 @@
       </div>
       <div class="col">
         <div class="mb-3">
+          <div class="form-group">
+            <label for="folder">Choose Folder</label>
+            <select name="folder" class="form-select select2 select2-hidden-accessible @error('folder') is-invalid @enderror" style="width: 100%;">
+              <?php foreach ($folder  as $item ) : ?>
+                <option value="@isset($create) {{ old('folder') }} @endisset @isset($item) {{ $item->id }} @endisset">
+                    <?= $item->folder_name ?>        
+                </option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+           @error('folder')
+           <span class="invalid-feedback" role="alert">
+               {{ $message }}
+           </span>
+           @enderror
+        </div>
+      </div>
+      <div class="col">
+        <div class="mb-3">
            <label for="file_title">File Title</label>
            <input id="file_title" type="text" name="file_title" class="form-control @error('file_title') is-invalid @enderror" value="@isset($create) {{ old('file_title') }} @endisset @isset($file) {{ $file->file_title }} @endisset" aria-describedby="file_title" placeholder="Please Select File">
            @error('file_title')
