@@ -38,7 +38,7 @@ use App\Http\Controllers\WardController;
 */
 
 Route::get('/', function () {
-    return view('home.dashboard');
+    return view('auth.login');
 });
 
 Route::get('dashboard', function () {
