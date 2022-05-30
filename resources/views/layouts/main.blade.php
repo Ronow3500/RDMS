@@ -109,12 +109,9 @@
     <strong>Copyright &copy; <?= date('Y'); ?> <a class="text-warning" href="http://tifaresearch.com/">{{ $company_name ?? '' }}</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      @env('production')
-        <a href="kennethkipchumba.com" target="_blank">
-         <strong>Support ?</strong>
-       </a>
-      @elseenv('local')
-       <b>Laravel Version</b> {{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+      @env('local')
+        <b>Laravel Version</b>
+        {{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
       @endenv
     </div>
   </footer>
