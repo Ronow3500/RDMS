@@ -100,6 +100,9 @@
             </div>
             @endisset
           </div>
+          <div class="card-footer">
+            {{ $files->links() }}
+          </div>
         </div>
       </div><!--/. container-fluid -->
       

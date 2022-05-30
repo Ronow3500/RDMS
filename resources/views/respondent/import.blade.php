@@ -9,9 +9,9 @@
                      <h5 class="text-center">Importing Respondents From A Spreadsheet File i.e Excel or CSV</h5>
                  </div>
                  <div class="col">
-                     <a href="{{ url('/Samples/Template.xlsx') }}" class="btn btn-primary">
-                         <i class="fas fa-download"></i>
-                         Sample Spreadsheet file 
+                     <a href="{{ url('/Samples/Template.xlsx') }}" class="btn btn-primary" title="Download Template">
+                        Sample Spreadsheet file
+                        <i class="fas fa-download"></i>
                      </a>
                  </div>
              </div>
@@ -36,7 +36,9 @@
                            @endif
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Import</button>
+                            <button type="submit" class="btn btn-success">
+                            <i class="fas fa-upload"></i>
+                            Import</button>
                         </div>
                       </div>
                       <div class="col">

@@ -5,13 +5,27 @@
  <section class="content">
       <div class="container-fluid">
         <div class="card">
-          <div class="card-header bg-primary">
-            <h2 class="card-title text-light">
-              <h3>
-                <i class="fas fa-folder fa-lg"></i>
-                {{ $folder->folder_name }}
-              </h3>
-            </h2>
+          <div class="card-header bg-default">
+            <div class="row">
+              <div class="col">
+                <h2 class="text-primary">
+                  <i class="fas fa-folder fa-lg"></i>
+                  {{ $folder->folder_name }}
+                </h2>
+              </div>
+              <div class="col">
+                <button class="btn btn-app">
+                  <span class="badge bg-primary">
+                    {{ $files->count() ?? 'null'}}
+                  </span>
+                  <i class="fas fa-file"></i>
+                   Files
+                </button>
+              </div>
+              <div class="col-6">
+                <a href="{{ url('ftp/files/create') }}" class="btn btn-default float-right" role="button">Add A New File</a>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             @isset($files)
@@ -20,7 +34,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th>Files</th>
-                    <th>File Type & Size</th>
+                    <th>File Type</th>
                     <th>Download</th>
                     <th>Action</th>
                   </tr>
@@ -38,12 +52,14 @@
                       </a>
                     </td>
                     <td>
-                      {{ $file->file_type . ' - ' . $file->file_size . 'kb' }}
+                      {{ $file->file_type }}
                     </td>
                     <td>
+                      
                       <a href="<?= url('ftp/files/download', $file->id) ?>">
                         <i class="fas fa-download"></i>
                       </a>
+                      {{ (round($file->file_size/1048576, 2) . 'MB') }}
                     </td>
                     <td>
                       <div class="row">

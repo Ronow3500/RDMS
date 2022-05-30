@@ -43,12 +43,12 @@
                   <i class="fas fa-user-lock nav-icon"></i>
                   <p>System Users</p>
                 </a>
-              </li>
+            </li>
 
             </ul>
           </li>
         </ul>
-        @endcan
+      @endcan
       
       @can('is-staff')
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -56,7 +56,6 @@
                with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-              
               <p>
                  Database
                 <i class="right fas fa-angle-left"></i>
@@ -81,7 +80,6 @@
         <!-- Options Management Menu -->
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link active">
-              
             <p>
               Options Management
               <i class="right fas fa-angle-left"></i>

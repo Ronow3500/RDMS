@@ -132,8 +132,10 @@ class FolderController extends Controller
     {
         //dd(auth()->user()->name);
         $folder = Folder::find($id);
-        $files = File::all();
         //dd($files->count());
+
+        // List files that belongs to this folder
+        $files  = File::where('folder_id', $id)->paginate(10);
 
         if ($files->count() > 0)
         {
