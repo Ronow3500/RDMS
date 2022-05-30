@@ -9,7 +9,7 @@
           <div class="card-header bg-warning">
             <div class="row">
               <div class="col-6">
-                <h1 class="card-title float-left"> Folder </h1>
+
               </div>
               <div class="col-6">
                 <a href="{{ url('ftp/folders/create') }}" class="btn btn-success float-right" role="button">Create Folder</a>
@@ -22,7 +22,7 @@
               <table class="table">
                 <thead class="thead-light">
                   <tr>
-                    <th>Folder</th>
+                    <th>Folders</th>
                     <th>Action</th>
                   </tr>
                 </thead>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Ftp;
 
+use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\Folder;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -193,7 +193,7 @@ class FileController extends Controller
                 'deleted_by' => auth()->user()->name
             ]);
 
-            return redirect()->back()->with('info', 'File successfully removed from the server');
+            return redirect()->back()->with('success', 'File successfully removed from the server');
         }
         else
         {

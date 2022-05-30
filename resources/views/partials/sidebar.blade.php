@@ -211,12 +211,6 @@
               <li class="nav-item">
                 <a href="{{ url('ftp/folders/index') }}" class="nav-link">
                   <i class="fas fa-folder nav-icon"></i>
-                  <p>Folders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('ftp/files/index') }}" class="nav-link">
-                  <i class="fas fa-file nav-icon"></i>
                   <p>Files</p>
                 </a>
               </li>
