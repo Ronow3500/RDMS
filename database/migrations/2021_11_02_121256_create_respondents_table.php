@@ -44,7 +44,6 @@ class CreateRespondentsTable extends Migration
             $table->string('employment_status')->nullable();
             $table->string('age_group')->nullable();
             $table->string('last_downloaded_date');
-            $table->string('project_name');
             $table->timestamps();
         });
     }

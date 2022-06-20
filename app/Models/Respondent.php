@@ -24,6 +24,8 @@ class Respondent extends Model
         'phone_2',
         'phone_3',
         'phone_4',
+        'email',
+        'occupation',
         'region',
         'county',
         'sub_county',
@@ -31,17 +33,19 @@ class Respondent extends Model
         'division',
         'location',
         'sub_location',
-        'ward',
         'constituency',
+        'ward',
+        'setting',
         'gender',
         'exact_age',
-        'age_group',
-        'setting',
         'education_level',
         'marital_status',
         'religion',
+        'income',
+        'lsm',
         'ethnic_group',
-        'employment_status'
+        'employment_status',
+        'age_group',
     ];
 
     public static function getRespondent()

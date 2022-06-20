@@ -27,6 +27,8 @@ class RespondentImport implements ToModel,WithHeadingRow
             'phone_2' => $row['phone_2'],
             'phone_3' => $row['phone_3'],
             'phone_4' => $row['phone_4'],
+            'email'   => $row['email'],
+            'occupation' => $row['occupation'],
             'region' => $row['region'],
             'county' => $row['county'],
             'sub_county' => $row['sub_county'],
@@ -34,17 +36,19 @@ class RespondentImport implements ToModel,WithHeadingRow
             'division' => $row['division'],
             'location' => $row['location'],
             'sub_location' => $row['sub_location'],
-            'ward' => $row['ward'],
             'constituency' => $row['constituency'],
+            'ward' => $row['ward'],
+            'setting' => $row['setting'],
             'gender' => $row['gender'],
             'exact_age' => $row['exact_age'],
-            'age_group' => $row['age_group'],
-            'setting' => $row['setting'],
             'education_level' => $row['education_level'],
             'marital_status' => $row['marital_status'],
             'religion' => $row['religion'],
+            'income' => $row['income'],
+            'lsm' => $row['lsm'],
             'ethnic_group' => $row['ethnic_group'],
-            'employment_status' => $row['employment_status']
+            'employment_status' => $row['employment_status'],
+            'age_group' => $row['age_group']
         ]);
     }
 }

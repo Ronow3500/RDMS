@@ -15,11 +15,8 @@ class RespondentExport implements FromCollection,WithHeadings,ShouldAutoSize,Wit
     public function headings():array
     {
         return [
-            'r_id','name','phone_1','phone_2','phone_3','phone_4','region','county',
-            'sub_county','district','division','location','sub_location','ward',
-            'constituency','gender','exact_age','age_group','setting',
-            'education_level','marital_status','religion','ethnic_group',
-            'employment_status'
+            'r_id','name','phone_1','phone_2','phone_3','phone_4','email','occupation','region','county',
+            'sub_county','district','division','location','sub_location','constituency','ward','setting','gender','exact_age','education_level','marital_status','religion','income','lsm','ethnic_group','employment_status','age_group'
         ];
     }
 
