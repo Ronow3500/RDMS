@@ -33,7 +33,7 @@ class CreateRespondentsTable extends Migration
             $table->string('constituency')->nullable();
             $table->string('ward')->nullable();
             $table->string('setting')->nullable();
-            $table->string('sex')->nullable();
+            $table->string('gender')->nullable();
             $table->string('exact_age')->nullable();
             $table->string('education_level')->nullable();
             $table->string('marital_status')->nullable();
@@ -43,7 +43,7 @@ class CreateRespondentsTable extends Migration
             $table->string('ethnic_group')->nullable();
             $table->string('employment_status')->nullable();
             $table->string('age_group')->nullable();
-            $table->string('last_downloaded_date');
+            $table->string('last_downloaded_date')->nullable();
             $table->timestamps();
         });
     }

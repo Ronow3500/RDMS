@@ -10,7 +10,7 @@
             <div class="row">
               <div class="col-6">
                 <h1 class="card-title float-left">
-                  :<span class="badge badge-success">Gender Options</span>
+                <span class="badge badge-success">Gender Options</span>
                 </h1>
 
               </div>
