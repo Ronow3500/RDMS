@@ -22,20 +22,18 @@
 
 <div class="jumbotron bg-primary text-center" style="margin-bottom:0">
 
-    <div class="row">
-      <div class="col-md-6 mt-3 mb-3">
-        <a href="{{ url('/') }}">
-          <img src="./assets/images/logo.png" class="img-thumbnail img-fluid" alt="TIFA Research">
-        </a>
-      </div>
-
-    <div draggable="true" class="col-md-6 bg-primary">
+  <div class="row">
+    <div class="col-md-6 mt-3 mb-3">
+      <a href="{{ url('/') }}">
+        <img src="./assets/images/logo.png" class="img-thumbnail img-fluid" alt="TIFA Research">
+      </a>
+    </div>
+    <div draggable="true" class="col-md-6">
       <div class="mt-5 text-light">
         <h1>{{ $title ?? ''; }}</h1>
       </div>
     </div>
-    </div>
-   
+  </div>  
 </div>
 
 <div class="jumbotron bg-warning" style="height: 100vh;">
@@ -82,7 +80,12 @@
             
             <div class="row mt-4">
               <div class="col">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                <a href="{{ url()->previous() }}" title="Go Back" class="btn btn-warning">
+                  <i class="fas fa-arrow-left"></i>
+                </a>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary float-end">Send</button>
               </div>
             </div>
         </form>
