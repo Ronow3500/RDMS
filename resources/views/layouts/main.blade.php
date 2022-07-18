@@ -78,10 +78,15 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-1">
+            <a href="{{ url()->previous() }}" class="btn btn-warning" title="Back">
+              <i class="fas fa-arrow-left"></i>
+            </a>
+          </div>
+          <div class="col-sm-8">
             <h1 class="m-0 text-dark">{{ $header ?? '' }}</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <div class="col-sm-3">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Respondents</a></li>
               <li class="breadcrumb-item active">{{ $header ?? '' }}</li>

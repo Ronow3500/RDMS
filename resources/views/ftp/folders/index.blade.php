@@ -58,7 +58,9 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h4 class="modal-title text-danger">You are about to delete {{ $folder->folder_name }}. Are you sure of this action?</h4>
+                                  <h4 class="modal-title text-danger">
+                                    You are about to delete {{ $folder->folder_name }}. This action cannot be reversed. Are you sure to proceed?
+                                  </h4>
                                 </div>
                                 <div class="modal-body">
                                   <div class="row">

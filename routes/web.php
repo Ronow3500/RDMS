@@ -102,7 +102,7 @@ Route::get('/user', [UserController::class, 'index']);
 
  //Folders
   
-  Route::middleware('auth')->get('ftp/folders/index', [FolderController::class, 'index']);
+  Route::middleware('auth')->get('ftp/folders/index', [FolderController::class, 'index'])->name('folders');
  Route::middleware('auth')->get('ftp/folders/create', [FolderController::class, 'create']);
  Route::middleware('auth')->post('ftp/folders/store', [FolderController::class, 'store']);
  Route::middleware('auth')->get('ftp/folders/show/{id}', [FolderController::class, 'show']);

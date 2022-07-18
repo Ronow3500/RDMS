@@ -16,18 +16,19 @@
                 <h3>{{ $file->file_title }}</h3>
                 
                 <ul class="list-group">
-                  <li class="list-group-item list-group-item-success">{{ $file->file_name }}</li>
-                  <li class="list-group-item list-group-item-info">{{ $file->file_type }}</li>
-                  <li class="list-group-item list-group-item-warning">{{ $file->file_size }} Kilobytes</li>
+                  <li class="list-group-item list-group-item-success"><strong>File Name: </strong> {{ $file->file_name }}</li>
+                  <li class="list-group-item list-group-item-info"><strong>File Type: </strong> {{ $file->file_type }}</li>
+                  <li class="list-group-item list-group-item-warning"><strong>File Size: </strong> {{ $file->file_size }} Kilobytes</li>
                 </ul>
                 <hr>
                 <p>{{ $file->file_description }}</p>
               </div>
               <div class="col">
-                <a href="<?= url('ftp/files/download', $file->id) ?>" class="btn btn-primary float-right" title="Download">
-                   {{ $file->file_name }}
+                <a href="<?= url('ftp/files/download', $file->id) ?>" class="btn btn-primary float-right" title="Download {{ $file->file_name }}">
+                   Download
                   <i class="fas fa-download"></i>
                 </a>
+                <p>{{ $file->file_description }}</p>
               </div>
             </div>
           </div>

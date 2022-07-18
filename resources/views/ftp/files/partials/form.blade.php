@@ -14,9 +14,10 @@
       <div class="col">
         <div class="mb-3">
           <div class="form-group">
-            <label for="folder">Choose Folder</label>
+            <label for="folder">Choose Correct Folder</label>
             <select name="folder" class="form-select select2 select2-hidden-accessible @error('folder') is-invalid @enderror" style="width: 100%;">
               <?php foreach ($folder  as $item ) : ?>
+                <option></option>
                 <option value="@isset($create) {{ old('folder') }} @endisset @isset($item) {{ $item->id }} @endisset">
                     <?= $item->folder_name ?>        
                 </option>

@@ -17,7 +17,7 @@ class FolderController extends Controller
      */
     public function index()
     {
-        $data['folders'] = Folder::paginate(10);
+        $data['folders'] = Folder::orderByDesc('created_at')->paginate(10);
         //dd($data);
 
         return view('ftp.folders.index', $data);
@@ -51,7 +51,7 @@ class FolderController extends Controller
 
         if ($folder->create($validatedData))
         {
-            return redirect()->back()->with('success', 'Folder successfully created');
+            return redirect()->route('folders')->with('success', 'Folder successfully created');
         }
         else
         {
@@ -114,7 +114,7 @@ class FolderController extends Controller
         {
             $folder->update($validatedData);
 
-            return redirect()->back()->with('success', 'Folder successfully updated');
+            return redirect()->route('folders')->with('success', 'Folder successfully updated');
         }
         else
         {
@@ -150,7 +150,7 @@ class FolderController extends Controller
                     'deleted_by' => auth()->user()->name
                 ]);
 
-                return redirect()->back()->with('info', 'Folder successfully removed from the server');
+                return redirect()->back()->with('info', 'Folder successfully removed');
             }
             else
             {

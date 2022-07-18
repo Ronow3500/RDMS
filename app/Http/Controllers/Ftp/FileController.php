@@ -32,7 +32,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        $data['folder'] = Folder::all();
+        $data['folder'] = Folder::orderByDesc('created_at')->get();
 
         return view('ftp.files.create', $data);
     }
